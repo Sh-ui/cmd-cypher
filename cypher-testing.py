@@ -77,7 +77,7 @@ class CryptoPromptCmd(cmd.Cmd):
 
 if __name__ == '__main__':
 	print('\n'* 3)
-	print("Ian's Caesar Cypher Tool")
+	print("Shui's Caesar Cypher Tool")
 	print('========================')
 	print()
 	print('type "help" for commands')
