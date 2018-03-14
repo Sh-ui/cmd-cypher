@@ -1,19 +1,23 @@
 """
 Usage:
-  cypher.py encrypt (-t|-f) IN [SHFT] [PATH] [-o]
-  cypher.py decrypt (-t|-f) IN [SHFT [PATH] | ((-a) PATH)] [-o]
-  cypher.py (-? | -h | --help)
-  cypher.py (-q | -quit)
-  cypher.py (-i | --interactive)
+  cypher.py encrypt [-w][-o DIR]([-r|-s CHR][-m N])(-t IN...|-f IN...)
+  cypher.py decrypt [-w][-o DIR][-s CHR|-a](-t IN...|-f IN...)
+  cypher.py -i
+  cypher.py -h
+  cypher.py -q
+
 Options:
-  -t, --text         type a string as a input
-  -f, --file         give a file as input
-  -i, --interactive  Interactive Mode
-  -h, --help         show this screen and exit.
-  -o, --override     re-write input file
-  -a, --auto         write all shift attempts to file
-  SHFT         character shift amount [default:3]
-  PATH         path out directory [default:cypherOUT.txt]
+  -w --overwrite  
+  -o DIR --output=DIR  [default: cyphOUT.txt]
+  -s CHR --shift=CHR   type a single number or #-#.. to vary
+  -r RNG --random RNG  single number as max or #min-#max..
+  -m N --move=N        shift or randomize every N characters
+  -a --auto        test all shift attempts and write to file
+  -t --text
+  -f --file
+  -i --interactive
+  -?, -h, --help
+  -q --quit
 """
 import sys
 import cmd
