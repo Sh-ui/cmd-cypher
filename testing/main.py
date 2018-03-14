@@ -7,7 +7,7 @@ Usage:
   cypher.py -q
 
 Options:
-  -w --overwrite  
+  -w --overwrite
   -o DIR --output=DIR  [default: cyphOUT.txt]
   -s CHR --shift=CHR   type a single number or #-#.. to vary
   -r RNG --random RNG  single number as max or #min-#max..
@@ -23,9 +23,9 @@ import sys
 import cmd
 from docopt import docopt, DocoptExit
 from MyDecoration import docopt_cmd
-from funcs import *
+from funcs import del_punc, cypher
 
-SHFT = 3
+SHIFT = 3
 
 class PromptCmd(cmd.Cmd):
 	file = None
@@ -37,10 +37,10 @@ class PromptCmd(cmd.Cmd):
 
 	@docopt_cmd
 	def do_encrypt(self, arg):
-		'''Usage: encrypt (-t|-f) IN [SHFT] [PATH] [-o]'''
-		if arg['IN'] != None and -t == True:
+		'''Usage: encrypt [-w][-o DIR]([-r|-s CHR][-m N])(-t IN...|-f IN...)'''
+		if (arg['IN'] != None) and (arg['--text'] == True):
 			text = del_punc(arg['IN'])
-			shft = SHFT if arg['SHFT'] == None else int(arg['SHFT'])
+			shift = SHIFT if arg['--shift'] == None else int(arg['--shift'])
 			encrypted = cypher(text,shift)
 			print('\n ',encrypted.upper())
 
