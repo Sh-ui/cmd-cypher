@@ -24,7 +24,6 @@ def cypher(text, shift):
 			secret = secret + c
 	return secret
 
-max_shift = 26
 
 class CryptoPromptCmd(cmd.Cmd):
 	prompt = '\n> '
@@ -39,24 +38,10 @@ class CryptoPromptCmd(cmd.Cmd):
 	def do_encrypt(self, arg):
 		'''usage: encrypt (provided string or /filename)[shift number]'''
 		if arg != '':
+			text  = del_punc(sym_extract(arg,'()'))
 			shift = int(sym_extract(arg,'[]'))
-
-			if text.startswith('/'):
-				filename = file(sym_extract(arg,'()'))
-				with open(filename, 'r') as f:
-					with open('outputCypher.txt', 'w') as f1:
-						for line in f:
-							L = del_punc(sym_extract(line,'()'))
-							f1.write(cypher(L,shift))
-						f1.close()
-						f.close()
-
-			else:
-				text  = del_punc(sym_extract(arg,'()'))
-				shift = int(sym_extract(arg,'[]'))
-				shift = max_shift if shift > max_shift else shift
-				encrypted = cypher(text,shift)
-				print('\n ',encrypted.upper())
+			encrypted = cypher(text,shift)
+			print('\n ',encrypted.upper())
 		else:
 			print('invalid command\nusage: encrypt(provided string or /filename)[shift number]')
 			return
